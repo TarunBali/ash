@@ -2,25 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mother's Day Envelope</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mother’s Day Envelope</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="wrapper">
+  <div class="wrapper" id="envelope">
     <div class="lid one"></div>
     <div class="lid two"></div>
     <div class="envelope"></div>
-    <div class="letter" id="letter">
-      <p>Happy Mother's Day! <br> -Tarun</p>
-      <div class="click-hint">Click to read</div>
+
+    <div class="letter" id="peek">
+      <p>Happy Mother’s Day! ❤️</p>
+    </div>
+    <button class="open-btn" id="openBtn">OPEN</button>
+  </div>
+
+  <div class="full-letter" id="overlay">
+    <div class="letter-content">
+      <button class="close-btn" id="closeBtn">&times;</button>
+      <h2>To My Dearest Mom,</h2>
+      <p>On this special day, I celebrate you—your endless love, your unwavering support, and your beautiful spirit that brightens every moment.</p>
+      <p>Thank you for your guidance, your kindness, and your heartfelt wisdom. Every memory with you is a treasure I hold close.</p>
+      <p>May your Mother’s Day be filled with all the joy and laughter you’ve given me a thousand times over.</p>
+      <p>With all my love, ❤️</p>
     </div>
   </div>
-  <div id="letterModal" class="modal">
-    <div class="modal-content">
-      <span class="close">×</span>
-      <p>Dear Mom, <br><br> On this special day, I want to express how much you mean to me. Your love, support, and guidance have shaped me into who I am today. I am forever grateful for everything you do. Wishing you a wonderful Mother's Day filled with joy and happiness. <br><br> With all my love, <br> Tarun</p>
-    </div>
-  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
