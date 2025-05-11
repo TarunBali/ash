@@ -1,232 +1,220 @@
-* { 
-  margin: 0; 
-  padding: 0; 
-  box-sizing: border-box; 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body { 
-  height: 100vh; 
-  display: flex; 
-  align-items: center; 
+body {
+  height: 100vh;
+  display: flex;
   justify-content: center;
+  align-items: center;
   font-family: 'Brush Script MT', cursive;
   background: linear-gradient(135deg, #ffe6f2 0%, #ffb3d9 100%);
-  overflow: hidden; 
+  overflow: hidden;
+}
+
+.wrapper {
+  width: 300px;
+  height: 200px;
   position: relative;
+  cursor: pointer;
 }
 
-.wrapper { 
-  width: 300px; 
-  height: 200px; 
-  position: relative; 
-  perspective: 800px;
-  cursor: pointer; 
-  background: #ff99cc; 
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(255,105,180,0.3);
-  margin: 0 auto;
-}
-
-.lid, .envelope { 
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  height: 100%; 
-}
-
-.lid { 
-  transform-origin: top; 
-  transition: transform 0.3s ease; 
-}
-
-.lid.one { 
+/* Envelope Structure */
+.lid {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
   border: 150px solid transparent;
   border-top: 100px solid #ff66b3;
-  transform: rotateX(0); 
-  z-index: 3; 
-}
-
-.lid.two { 
-  border: 150px solid transparent;
-  border-top: 100px solid #ff99cc;
-  transform: rotateX(90deg); 
-  z-index: 1; 
-}
-
-.envelope { 
-  border: 150px solid;
-  border-color: transparent #ffcce6 #ffcce6 #ffd9eb;
-  border-top-width: 100px;
+  transform-origin: top;
+  transition: transform 0.4s ease;
   z-index: 2;
 }
 
-.letter { 
-  position: absolute; 
-  top: 5%; 
-  left: 10%; 
-  width: 80%; 
-  height: 80%;
-  background: linear-gradient(145deg, #fff5f9 0%, #ffe6f0 100%); 
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(255,105,180,0.2); 
-  display: flex;
-  align-items: center; 
-  justify-content: center; 
-  z-index: 2;
-  transition: transform 0.5s; 
-  padding: 15px;
-}
-
-.letter p { 
-  font-size: 28px; 
-  color: #ff4d94;
-  line-height: 1.3; 
-  text-align: center;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-.click-indicator { 
-  position: absolute; 
-  bottom: -40px; 
-  left: 50%;
-  transform: translateX(-50%); 
-  background: #ff66b3; 
-  color: #fff;
-  padding: 10px 20px; 
-  border-radius: 30px; 
-  font-size: 16px;
-  box-shadow: 0 4px 15px rgba(255,102,179,0.3); 
-  display: flex;
-  align-items: center; 
-  gap: 8px; 
-  animation: pulse 2s infinite;
-  white-space: nowrap; 
+.lid.one {
+  border-top-color: #ff7ea7;
   z-index: 3;
 }
 
-@keyframes pulse { 
-  0%,100% { transform: translateX(-50%) scale(1); }
-  50% { transform: translateX(-50%) scale(1.05); }
+.lid.two {
+  border-top-color: #ff99cc;
+  transform: rotateX(90deg);
+  z-index: 1;
 }
 
-.full-letter { 
-  position: fixed; 
-  inset: 0; 
+.envelope {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border: 150px solid #ffccd5;
+  border-top: 100px solid transparent;
+  background: #ffd9eb;
+  z-index: 1;
+}
+
+/* Card Inside Envelope */
+.letter {
+  position: absolute;
+  width: 90%;
+  height: 85%;
+  background: #fff5f7;
+  bottom: -30%;
+  left: 5%;
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.5s ease 0.3s;
+  z-index: 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.letter p {
+  text-align: center;
+  font-size: 28px;
+  color: #ff4d94;
+  line-height: 1.3;
+}
+
+/* Open Button */
+.open-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff66b3;
+  color: white;
+  padding: 8px 25px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.open-btn:hover {
+  background: #ff4d94;
+  transform: translateX(-50%) scale(1.05);
+}
+
+/* Animation States */
+.wrapper.open .lid.one {
+  transform: rotateX(180deg);
+  transition-delay: 0s;
+}
+
+.wrapper.open .lid.two {
+  transform: rotateX(180deg);
+  transition-delay: 0.2s;
+}
+
+.wrapper.open .letter {
+  transform: translateY(-70%);
+  transition-delay: 0.4s;
+}
+
+/* Full Card Modal */
+.full-letter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
   display: none;
-  background: rgba(0,0,0,0.9); 
   justify-content: center;
-  align-items: center; 
-  z-index: 5;
+  align-items: center;
+  z-index: 100;
 }
 
-.letter-content { 
-  background: #fff5f9; 
+.letter-content {
+  background: #fff5f7;
+  width: 90%;
+  max-width: 600px;
+  padding: 30px;
   border-radius: 15px;
-  padding: 30px; 
-  max-width: 600px; 
-  width: 90%; 
-  margin: 15px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2); 
   position: relative;
 }
 
-.close-btn { 
-  position: absolute; 
-  top: 15px; 
+.close-btn {
+  position: absolute;
+  top: 15px;
   right: 15px;
-  background: #ff66b3; 
-  color: #fff; 
-  width: 35px; 
+  background: #ff66b3;
+  color: white;
+  width: 35px;
   height: 35px;
-  border: none; 
-  border-radius: 50%; 
-  font-size: 22px; 
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
+  transition: all 0.3s ease;
 }
 
-.close-btn:hover { 
-  background: #ff4d94; 
-  transform: rotate(90deg); 
+.close-btn:hover {
+  background: #ff4d94;
+  transform: rotate(90deg);
+}
+
+.signature {
+  display: block;
+  font-size: 32px;
+  margin-top: 15px;
 }
 
 /* Mobile Optimization */
 @media (max-width: 480px) {
-  .wrapper { 
-    width: 250px; 
-    height: 170px; 
+  .wrapper {
+    width: 250px;
+    height: 170px;
   }
 
-  .lid.one { 
+  .lid, .envelope {
     border-width: 125px;
-    border-top-width: 85px; 
+    border-top-width: 85px;
   }
 
-  .lid.two { 
-    border-width: 125px;
-    border-top-width: 85px; 
+  .letter {
+    padding: 15px;
+    bottom: -25%;
   }
 
-  .envelope { 
-    border-width: 125px;
-    border-top-width: 85px; 
+  .letter p {
+    font-size: 24px;
   }
 
-  .letter { 
-    width: 85%; 
-    height: 75%; 
-    padding: 10px;
+  .open-btn {
+    font-size: 14px;
+    padding: 6px 20px;
+    bottom: 15px;
   }
 
-  .letter p { 
-    font-size: 22px; 
+  .letter-content {
+    padding: 25px;
   }
 
-  .click-indicator { 
-    font-size: 14px; 
-    padding: 8px 16px; 
-    bottom: -35px;
-  }
-
-  .letter-content { 
-    padding: 25px 20px; 
-  }
-
-  .letter-content p { 
-    font-size: 20px; 
-    line-height: 1.5;
-  }
-
-  .close-btn { 
-    width: 30px; 
-    height: 30px; 
-    font-size: 20px; 
+  .signature {
+    font-size: 28px;
   }
 }
 
 @media (max-width: 360px) {
-  .wrapper { 
-    width: 220px; 
-    height: 150px; 
+  .wrapper {
+    width: 220px;
+    height: 150px;
   }
 
-  .lid.one, .lid.two { 
+  .lid, .envelope {
     border-width: 110px;
-    border-top-width: 75px; 
+    border-top-width: 75px;
   }
 
-  .envelope { 
-    border-width: 110px;
-    border-top-width: 75px; 
-  }
-
-  .letter p { 
-    font-size: 20px; 
-  }
-
-  .click-indicator { 
-    font-size: 13px; 
-    bottom: -30px;
+  .letter p {
+    font-size: 22px;
   }
 }
