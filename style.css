@@ -1,3 +1,4 @@
+/* Reset & base */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -9,6 +10,7 @@ body {
   background: linear-gradient(135deg, #ffe6ea 0%, #ffb6c1 50%, #ff69b4 100%);
 }
 
+/* Envelope wrapper */
 .wrapper {
   width: 300px;
   height: 200px;
@@ -21,6 +23,7 @@ body {
   border-radius: 8px;
 }
 
+/* Lids */
 .lid {
   position: absolute;
   width: 100%;
@@ -30,7 +33,6 @@ body {
   transform-origin: top;
   transition: transform 0.25s linear;
 }
-
 .lid.one {
   border-left: 150px solid transparent;
   border-right: 150px solid transparent;
@@ -40,7 +42,6 @@ body {
   transform: rotateX(0deg);
   transition-delay: 0.75s;
 }
-
 .lid.two {
   border-left: 150px solid transparent;
   border-right: 150px solid transparent;
@@ -51,6 +52,7 @@ body {
   transition-delay: 0.5s;
 }
 
+/* Envelope front panel */
 .envelope {
   position: absolute;
   width: 100%;
@@ -64,6 +66,7 @@ body {
   z-index: 2;
 }
 
+/* Teaser letter card */
 .letter {
   position: absolute;
   top: 0;
@@ -83,7 +86,6 @@ body {
   padding: 20px;
   overflow: hidden;
 }
-
 .letter p {
   text-align: center;
   font-size: 24px;
@@ -91,6 +93,7 @@ body {
   padding: 0 10px;
 }
 
+/* OPEN button */
 .open-btn {
   position: absolute;
   bottom: 10px;
@@ -106,12 +109,25 @@ body {
   z-index: 4;
   transition: background 0.2s;
 }
-.open-btn:hover { background: #ffe6f0; }
+.open-btn:hover {
+  background: #ffe6f0;
+}
 
-.wrapper:hover .lid.one { transform: rotateX(90deg); transition-delay: 0s; }
-.wrapper:hover .lid.two { transform: rotateX(180deg); transition-delay: 0.25s; }
-.wrapper:hover .letter  { transform: translateY(-50px); transition-delay: 0.5s; }
+/* Hover animations */
+.wrapper:hover .lid.one {
+  transform: rotateX(90deg);
+  transition-delay: 0s;
+}
+.wrapper:hover .lid.two {
+  transform: rotateX(180deg);
+  transition-delay: 0.25s;
+}
+.wrapper:hover .letter {
+  transform: translateY(-50px);
+  transition-delay: 0.5s;
+}
 
+/* Full-screen overlay */
 .full-letter {
   position: fixed;
   top: 0;
@@ -124,7 +140,6 @@ body {
   align-items: center;
   z-index: 10;
 }
-
 .letter-content {
   width: 80%;
   max-width: 600px;
@@ -136,20 +151,17 @@ body {
   overflow-y: auto;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
-
 .letter-content h2 {
   margin-bottom: 0.5em;
   color: #b0004e;
   font-size: 1.6rem;
 }
-
 .letter-content p {
   font-size: 1rem;
   line-height: 1.6;
   color: #444;
   margin-bottom: 1em;
 }
-
 .close-btn {
   position: absolute;
   top: 15px;
@@ -166,11 +178,48 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Responsive breakpoints */
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 80vw;
+    max-width: 260px;
+    height: calc(80vw * 0.66);
+    max-height: 175px;
+  }
+  .open-btn {
+    bottom: 8px;
+    right: 8px;
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}
+
 @media screen and (max-width: 480px) {
-  .wrapper { width: 200px; height: 140px; }
-  .letter { left: 10%; top: 0; height: 80%; }
-  .open-btn { padding: 4px 10px; font-size: 12px; }
-  .letter-content { padding: 20px; }
-  .letter-content h2 { font-size: 1.4rem; }
-  .letter-content p { font-size: 0.9rem; }
+  .wrapper {
+    width: 90vw;
+    max-width: 200px;
+    height: calc(90vw * 0.66);
+    max-height: 140px;
+  }
+  .letter {
+    top: 8%;
+    height: 70%;
+  }
+  .open-btn {
+    bottom: 6px;
+    right: 6px;
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  .full-letter .letter-content {
+    width: 95%;
+    height: 85vh;
+    padding: 16px;
+  }
+  .letter-content h2 {
+    font-size: 1.3rem;
+  }
+  .letter-content p {
+    font-size: 0.9rem;
+  }
 }
