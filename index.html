@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mother’s Day Envelope</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mother's Day Card</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="wrapper" id="envelope">
+  <div class="click-indicator">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M5 12l7-7 7 7"/>
+    </svg>
+    Open for Mom
+  </div>
+
+  <div class="wrapper">
     <div class="lid one"></div>
     <div class="lid two"></div>
     <div class="envelope"></div>
-
-    <div class="letter" id="peek">
-      <p>To My Dearest Mom ❤️</p>
+    <div class="letter">
+      <p>To My Dearest Mom 🌸</p>
     </div>
-    <button class="open-btn" id="openBtn">OPEN</button>
   </div>
-
-  <div class="full-letter" id="overlay">
+  
+  <div class="full-letter">
     <div class="letter-content">
-      <button class="close-btn" id="closeBtn">&times;</button>
-      <h2>To My Dearest Mom,</h2>
-      <p>On this special day, I celebrate you—your endless love, your unwavering support, and your beautiful spirit that brightens every moment.</p>
-      <p>Thank you for your guidance, your kindness, and your heartfelt wisdom. Every memory with you is a treasure I hold close.</p>
-      <p>May your Mother’s Day be filled with all the joy and laughter you’ve given me a thousand times over.</p>
-      <p>With all my love, ❤️</p>
+      <button class="close-btn">&times;</button>
+      <p>
+        Happy Mother's Day! 💖<br><br>
+        To the world's most amazing mother,<br>
+        Thank you for your endless love and care.<br><br>
+        You're my guiding star, my safe haven,<br>
+        The source of strength beyond compare.<br><br>
+        May your day be filled with joy and laughter,<br>
+        And know you're loved forever after.<br><br>
+        With all my heart,<br>
+        <span class="signature">Your Child ❤️</span>
+      </p>
     </div>
   </div>
 
