@@ -1,31 +1,38 @@
-const wrapper = document.getElementById('envelope');
-const openBtn = document.getElementById('openBtn');
+const envelope = document.getElementById('envelope');
 const overlay = document.getElementById('overlay');
 const closeBtn = document.getElementById('closeBtn');
 
 function openLetter() {
-  wrapper.classList.add('open');
+  envelope.classList.add('open');
   setTimeout(() => overlay.style.display = 'flex', 600);
 }
 
-openBtn.addEventListener('click', e => {
-  e.stopPropagation();
-  openLetter();
-});
-wrapper.addEventListener('click', openLetter);
+// Desktop click events
+envelope.addEventListener('click', openLetter);
 
+// Mobile touch events
+envelope.addEventListener('touchstart', function(e) {
+  e.preventDefault();
+  openLetter();
+}, { passive: false });
+
+// Close functionality
 closeBtn.addEventListener('click', () => {
   overlay.style.display = 'none';
-  wrapper.classList.remove('open');
+  envelope.classList.remove('open');
 });
+
 overlay.addEventListener('click', e => {
   if (e.target === overlay) {
     overlay.style.display = 'none';
-    wrapper.classList.remove('open');
+    envelope.classList.remove('open');
   }
 });
 
-// Touch support
-wrapper.addEventListener('touchstart', () => {
-  openLetter();
+// Keyboard accessibility
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && overlay.style.display === 'flex') {
+    overlay.style.display = 'none';
+    envelope.classList.remove('open');
+  }
 });
