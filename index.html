@@ -1,25 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS Envelope Animation</title>
   <link rel="stylesheet" href="./style.css">
-
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<body>
-    <div class="wrapper">
-      <div class="lid one"></div>
-      <div class="lid two"></div>
-      <div class="envelope"></div>
-      <div class="letter">
-    <p class="text-color">Happy Bdayyy <br>  -Tarun <3</p>
-</div>
+  <div class="wrapper">
+    <div class="lid one"></div>
+    <div class="lid two"></div>
+    <div class="envelope"></div>
+    <div class="letter">
+      <p class="text-color">Happy Bdayyy <br> -Tarun <3</p>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="scrollable-content">
+        <h1>Happy Birthday! 🎉</h1>
+        <p>Here's your full birthday message...</p>
+        <!-- Add more content here to test scrolling -->
       </div>
     </div>
-  </body>
-<!-- partial -->
-  
+  </div>
+
+  <script>
+    document.querySelector('.wrapper').addEventListener('click', function(e) {
+      if (!e.target.closest('.letter')) {
+        this.classList.toggle('open');
+      }
+    });
+
+    document.querySelector('.letter').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.querySelector('.modal').classList.add('active');
+    });
+
+    document.querySelector('.close').addEventListener('click', function() {
+      document.querySelector('.modal').classList.remove('active');
+    });
+
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.classList.remove('active');
+      }
+    }
+  </script>
 </body>
 </html>
