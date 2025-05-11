@@ -2,53 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS Envelope Animation</title>
-  <link rel="stylesheet" href="./style.css">
+  <title>Mother's Day Envelope</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="wrapper">
     <div class="lid one"></div>
     <div class="lid two"></div>
     <div class="envelope"></div>
-    <div class="letter">
-      <p class="text-color">Happy Bdayyy <br> -Tarun <3</p>
+    <div class="letter" id="letter">
+      <p>Happy Mother's Day! <br> -Tarun</p>
     </div>
   </div>
-
-  <!-- Modal -->
-  <div class="modal">
+  <div id="letterModal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <div class="scrollable-content">
-        <h1>Happy Birthday! 🎉</h1>
-        <p>Here's your full birthday message...</p>
-        <!-- Add more content here to test scrolling -->
-      </div>
+      <span class="close">×</span>
+      <p>Dear Mom, <br><br> On this special day, I want to express how much you mean to me. Your love, support, and guidance have shaped me into who I am today. I am forever grateful for everything you do. Wishing you a wonderful Mother's Day filled with joy and happiness. <br><br> With all my love, <br> Tarun</p>
     </div>
   </div>
-
-  <script>
-    document.querySelector('.wrapper').addEventListener('click', function(e) {
-      if (!e.target.closest('.letter')) {
-        this.classList.toggle('open');
-      }
-    });
-
-    document.querySelector('.letter').addEventListener('click', function(e) {
-      e.stopPropagation();
-      document.querySelector('.modal').classList.add('active');
-    });
-
-    document.querySelector('.close').addEventListener('click', function() {
-      document.querySelector('.modal').classList.remove('active');
-    });
-
-    window.onclick = function(event) {
-      if (event.target.classList.contains('modal')) {
-        event.target.classList.remove('active');
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
