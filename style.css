@@ -22,6 +22,7 @@ body {
   display: flex;
   justify-content: center;
   z-index: 0;
+  cursor: pointer;
 }
 
 .lid {
@@ -37,7 +38,6 @@ body {
   transition: transform 0.25s linear;
 }
 
-/* Lid when closed */
 .lid.one {
   border-top: 100px solid #658ced;
   transform: rotateX(0deg);
@@ -45,7 +45,6 @@ body {
   transition-delay: 0.75s;
 }
 
-/* Lid when opened */
 .lid.two {
   border-top: 100px solid #3760C9;
   transform: rotateX(90deg);
@@ -73,31 +72,123 @@ body {
   height: 80%;
   background-color: yellow;
   border-radius: 15px;
-  color:rgb(); border-style:solid;
+  color: red;
   z-index: 2;
   transition: 0.5s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-
 
 .letter p {
   text-align: center;
   font-size: 30px;
-  margin-top: 30px;
-  color: red;
 }
 
-.wrapper:hover .lid.one {
-    transform: rotateX(90deg);
-    transition-delay: 0s;
+/* Envelope open state */
+.wrapper.open .lid.one {
+  transform: rotateX(90deg);
+  transition-delay: 0s;
 }
 
-.wrapper:hover .lid.two {
-    transform: rotateX(180deg);
-    transition-delay: 0.25s;
+.wrapper.open .lid.two {
+  transform: rotateX(180deg);
+  transition-delay: 0.25s;
 }
 
-.wrapper:hover .letter {
+.wrapper.open .letter {
   transform: translateY(-50px);
   transition-delay: 0.5s;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 999;
+}
+
+.modal.active {
+  display: block;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 30px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 40px;
+  cursor: pointer;
+  color: #333;
+}
+
+.scrollable-content {
+  overflow-y: auto;
+  max-height: 70vh;
+  padding-right: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .wrapper {
+    width: 250px;
+    height: 150px;
+  }
+
+  .lid {
+    border-right: 125px solid transparent;
+    border-left: 125px solid transparent;
+    border-bottom: 75px solid transparent;
+  }
+
+  .lid.one {
+    border-top: 75px solid #658ced;
+  }
+
+  .lid.two {
+    border-top: 75px solid #3760C9;
+  }
+
+  .envelope {
+    border-top: 75px solid transparent;
+    border-right: 125px solid #C4DFF0;
+    border-bottom: 75px solid #C4DFF0;
+    border-left: 125px solid #a4d4f2;
+  }
+
+  .letter {
+    width: 70%;
+    height: 70%;
+  }
+
+  .letter p {
+    font-size: 24px;
+  }
+
+  .modal-content {
+    padding: 20px;
+    margin: 10% auto;
+  }
+
+  .close {
+    right: 15px;
+    top: 5px;
+    font-size: 30px;
+  }
 }
