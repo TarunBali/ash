@@ -90,6 +90,25 @@ body {
   color: #C71585;
 }
 
+.letter .click-hint {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.wrapper:hover .letter .click-hint {
+  opacity: 1;
+}
+
 .wrapper:hover .lid.one {
   transform: rotateX(90deg);
   transition-delay: 0s;
