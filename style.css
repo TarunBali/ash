@@ -1,179 +1,176 @@
-:root {
-  --wrapper-width: 300px;
-  --wrapper-height: 200px;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   height: 100vh;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: sans-serif;
-  background: linear-gradient(to bottom, #FFF0F5, #FFFFFF);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(135deg, #ffe6ea 0%, #ffb6c1 50%, #ff69b4 100%);
 }
 
 .wrapper {
-  width: var(--wrapper-width);
-  height: var(--wrapper-height);
-  background-color: #FFB6C1;
+  width: 300px;
+  height: 200px;
   position: relative;
-  display: flex;
-  justify-content: center;
-  z-index: 0;
+  perspective: 800px;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: #ff9ebb;
+  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+  border-radius: 8px;
 }
 
 .lid {
   position: absolute;
-  height: 100%;
   width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
-  border-right: calc(var(--wrapper-width) / 2) solid transparent;
-  border-bottom: calc(var(--wrapper-height) / 2) solid transparent;
-  border-left: calc(var(--wrapper-width) / 2) solid transparent;
   transform-origin: top;
   transition: transform 0.25s linear;
 }
 
 .lid.one {
-  border-top: calc(var(--wrapper-height) / 2) solid #FF69B4;
-  transform: rotateX(0deg);
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 100px solid transparent;
+  border-top: 100px solid #ff7ea7;
   z-index: 3;
+  transform: rotateX(0deg);
   transition-delay: 0.75s;
 }
 
 .lid.two {
-  border-top: calc(var(--wrapper-height) / 2) solid #FFB6C1;
-  transform: rotateX(90deg);
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 100px solid transparent;
+  border-top: 100px solid #ff9ebb;
   z-index: 1;
+  transform: rotateX(90deg);
   transition-delay: 0.5s;
 }
 
 .envelope {
   position: absolute;
-  height: 100%;
   width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
-  border-top: calc(var(--wrapper-height) / 2) solid transparent;
-  border-right: calc(var(--wrapper-width) / 2) solid #FFDAB9;
-  border-bottom: calc(var(--wrapper-height) / 2) solid #FFDAB9;
-  border-left: calc(var(--wrapper-width) / 2) solid #FFE4E1;
-  z-index: 3;
+  border-top: 100px solid transparent;
+  border-right: 150px solid #ffccd5;
+  border-bottom: 100px solid #ffccd5;
+  border-left: 150px solid #ffd8e1;
+  z-index: 2;
 }
 
 .letter {
   position: absolute;
   top: 0;
+  left: 10%;
   width: 80%;
   height: 80%;
-  background-color: #FFF5EE;
-  border: 2px solid #FF69B4;
+  background: linear-gradient(145deg, #fff0f3 0%, #ffeef8 100%);
   border-radius: 15px;
-  z-index: 2;
-  transition: 0.5s;
+  border: 1px solid #ffb6c1;
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1; /* behind the flap */
+  transition: transform 0.5s;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  overflow: hidden;
 }
 
 .letter p {
   text-align: center;
-  font-size: 30px;
-  margin-top: 30px;
-  color: #C71585;
+  font-size: 24px;
+  color: #d6336c;
+  padding: 0 10px;
 }
 
-.letter .click-hint {
+.open-btn {
   position: absolute;
   bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0,0,0,0.7);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
+  right: 10px;
+  background: #ffffff;
+  color: #c7005a;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
   font-size: 14px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 4;
+  transition: background 0.2s;
 }
+.open-btn:hover { background: #ffe6f0; }
 
-.wrapper:hover .letter .click-hint {
-  opacity: 1;
-}
+.wrapper:hover .lid.one { transform: rotateX(90deg); transition-delay: 0s; }
+.wrapper:hover .lid.two { transform: rotateX(180deg); transition-delay: 0.25s; }
+.wrapper:hover .letter  { transform: translateY(-50px); transition-delay: 0.5s; }
 
-.wrapper:hover .lid.one {
-  transform: rotateX(90deg);
-  transition-delay: 0s;
-}
-
-.wrapper:hover .lid.two {
-  transform: rotateX(180deg);
-  transition-delay: 0.25s;
-}
-
-.wrapper:hover .letter {
-  transform: translateY(-50px);
-  transition-delay: 0.5s;
-}
-
-.modal {
-  display: none;
+.full-letter {
   position: fixed;
-  z-index: 1000;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
-.modal-content {
-  background-color: #FDFDFD;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #FF69B4;
+.letter-content {
   width: 80%;
-  max-height: 80vh;
+  max-width: 600px;
+  height: 80%;
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  position: relative;
   overflow-y: auto;
-  color: #333;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.close {
-  color: #FF69B4;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+.letter-content h2 {
+  margin-bottom: 0.5em;
+  color: #b0004e;
+  font-size: 1.6rem;
+}
+
+.letter-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 1em;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #b0004e;
+  color: #fff;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.close:hover,
-.close:focus {
-  color: #C71585;
-  text-decoration: none;
-}
-
-@media only screen and (max-width: 600px) {
-  :root {
-    --wrapper-width: 80vw;
-    --wrapper-height: calc((200 / 300) * 80vw);
-  }
-
-  .modal-content {
-    width: 90%;
-    margin: 10% auto;
-  }
-
-  .letter p {
-    font-size: 20px;
-  }
+@media screen and (max-width: 480px) {
+  .wrapper { width: 200px; height: 140px; }
+  .letter { left: 10%; top: 0; height: 80%; }
+  .open-btn { padding: 4px 10px; font-size: 12px; }
+  .letter-content { padding: 20px; }
+  .letter-content h2 { font-size: 1.4rem; }
+  .letter-content p { font-size: 0.9rem; }
 }
