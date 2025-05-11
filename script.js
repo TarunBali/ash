@@ -1,17 +1,26 @@
-var modal = document.getElementById("letterModal");
-var letter = document.getElementById("letter");
-var span = document.querySelector(".modal .close");
+const envelope = document.getElementById('envelope');
+const openBtn  = document.getElementById('openBtn');
+const overlay  = document.getElementById('overlay');
+const closeBtn = document.getElementById('closeBtn');
 
-letter.onclick = function() {
-  modal.style.display = "block";
+function openLetter() {
+  envelope.classList.add('open');
+  overlay.style.display = 'flex';
 }
 
-span.onclick = function() {
-  modal.style.display = "none";
-}
+openBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  openLetter();
+});
+envelope.addEventListener('click', openLetter);
 
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+closeBtn.addEventListener('click', () => {
+  overlay.style.display = 'none';
+  envelope.classList.remove('open');
+});
+overlay.addEventListener('click', e => {
+  if (e.target === overlay) {
+    overlay.style.display = 'none';
+    envelope.classList.remove('open');
   }
-}
+});
