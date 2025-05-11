@@ -1,38 +1,57 @@
 const envelope = document.getElementById('envelope');
+const openBtn = document.getElementById('openBtn');
 const overlay = document.getElementById('overlay');
 const closeBtn = document.getElementById('closeBtn');
 
-function openLetter() {
-  envelope.classList.add('open');
-  setTimeout(() => overlay.style.display = 'flex', 600);
+function toggleEnvelope() {
+  envelope.classList.toggle('open');
 }
 
-// Desktop click events
-envelope.addEventListener('click', openLetter);
+function showFullLetter() {
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
 
-// Mobile touch events
-envelope.addEventListener('touchstart', function(e) {
-  e.preventDefault();
-  openLetter();
-}, { passive: false });
-
-// Close functionality
-closeBtn.addEventListener('click', () => {
+function closeFullLetter() {
   overlay.style.display = 'none';
+  document.body.style.overflow = 'auto';
   envelope.classList.remove('open');
-});
+}
 
-overlay.addEventListener('click', e => {
-  if (e.target === overlay) {
-    overlay.style.display = 'none';
-    envelope.classList.remove('open');
+// Event Listeners
+envelope.addEventListener('click', () => {
+  if (!envelope.classList.contains('open')) {
+    toggleEnvelope();
+    setTimeout(showFullLetter, 800);
   }
 });
 
-// Keyboard accessibility
+openBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (!envelope.classList.contains('open')) {
+    toggleEnvelope();
+    setTimeout(showFullLetter, 800);
+  }
+});
+
+closeBtn.addEventListener('click', closeFullLetter);
+
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) closeFullLetter();
+});
+
+// Touch Support
+envelope.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  if (!envelope.classList.contains('open')) {
+    toggleEnvelope();
+    setTimeout(showFullLetter, 800);
+  }
+}, { passive: false });
+
+// Keyboard Support
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && overlay.style.display === 'flex') {
-    overlay.style.display = 'none';
-    envelope.classList.remove('open');
+    closeFullLetter();
   }
 });
